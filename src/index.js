@@ -100,6 +100,66 @@ class Toggle extends React.Component {
     }
 }
 
+function ActionLink() {
+    function handleClick(e) {
+        e.preventDefault();
+        console.log('THe link was clicked.');
+    }
+
+    return (
+        <a href="#" onClick={handleClick}>
+            Click me
+        </a>
+    )
+}
+
+class LogginButton extends React.Component {
+    handleClick = () => {
+        console.log('this is:', this);
+    };
+
+    render() {
+        return (
+            <button onClick={(e) => this.handleClick(e)}>
+                Loggin
+            </button>
+        );
+    }
+}
+
+function UserGreeting(props) {
+    return <h1>Welcome back!</h1>
+}
+
+function GuestGreeting(props) {
+    return <h1>Please sign up.</h1>
+}
+
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if (isLoggedIn) {
+        return <UserGreeting />;
+    }
+
+    return <GuestGreeting />
+}
+
+function LoginButton(props) {
+    return (
+        <button onClick={props.onClick}>
+            LOGIN :)
+        </button>
+    )
+}
+
+function LogoutButton(props) {
+    return (
+        <button onClick={props.onClick}>
+            LOGOUT :(
+        </button>
+    )
+}
+
 function App() {
     return (
         <div>
@@ -107,6 +167,9 @@ function App() {
             <Clock />
             <Clock />
             <Toggle />
+            {ActionLink()}
+            <LogginButton />
+            <Greeting isLoggedIn={false} />
         </div>
     )
 }
