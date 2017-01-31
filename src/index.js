@@ -720,6 +720,65 @@ var PRODUCTS = [
     {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
     {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
 ];
+//
+// function CustomTextInput(props) {
+//     let textInput = null;
+//
+//     function handleClick() {
+//         textInput.focus();
+//     }
+//     return (
+//         <div>
+//             <input
+//                 type="text"
+//                 ref={(input) => { textInput = input; }} />
+//             <input
+//                 type="button"
+//                 value="Focus the text input"
+//                 onClick={handleClick} />
+//         </div>
+//     );
+// }
+//
+// class AutoFocusTextInput extends React.Component {
+//     componentDidMount() {
+//         this.textInput.focus();
+//     }
+//
+//     render() {
+//         return (
+//             <CustomTextInput
+//             ref={(input) => { this.textInput = input; }} />
+//         );
+//     }
+// }
+
+class NameFormUncontrolled extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(event) {
+        alert('A name was submitted: ' + this.input.value);
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    Name:
+                    <input
+                        defaultValue="Bob"
+                        type="text"
+                        ref={(input) => this.input = input} />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+        );
+    }
+}
 
 function App() {
     return (
@@ -743,6 +802,8 @@ function App() {
             <Calculator />
             <SignUpDialog />
             <FilterableProductTable products={PRODUCTS} />
+            {/*<AutoFocusTextInput />*/}
+            <NameFormUncontrolled />
         </div>
     )
 }
